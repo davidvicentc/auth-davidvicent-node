@@ -10,7 +10,7 @@ Router.get('/signup', isNotAuthenticated, (req, res, next) => {
 });
 
 Router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile',
+    successRedirect: '/portafolio',
     failureRedirect: '/signup',
     passReqToCallback: true
 }));
@@ -20,18 +20,18 @@ Router.get('/signin', isNotAuthenticated, (req, res, next) => {
 });
 
 Router.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: '/profile',
+    successRedirect: '/portafolio',
     failureRedirect: '/signin',
     passReqToCallback: true
 }));
 
 Router.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('/')
+    res.redirect('/signin')
 })
 
-Router.get('/profile', isAuthenticated, (req, res) => {
-    res.render('profile')
+Router.get('/portafolio', isAuthenticated, (req, res) => {
+    res.render('portafolio')
 })
 
 function isAuthenticated(req, res, next) {
@@ -46,7 +46,7 @@ function isNotAuthenticated(req, res, next) {
         return next()
     }
 
-    res.redirect('/profile');
+    res.redirect('/portafolio');
 }
 
 module.exports = Router

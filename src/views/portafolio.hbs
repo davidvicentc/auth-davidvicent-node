@@ -1,0 +1,30 @@
+{{> head}}
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3>Portafolio</h3>
+            </div>
+            <div class="card-body">
+                <span>Bienvenido, {{user.username}}</span>
+                <div class="row">
+                    {{#if user.images}}
+
+                    {{#each user.images as |image|}}
+
+                    <div class="col-md-6 mx-auto">
+                        <img width="300" class="img-thumbnail" src="{{image.imgUrl}}" alt="">
+                    </div>
+                    {{/each}}
+
+                    {{else}}
+                    <h3>No hay imagenes</h3>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer}}

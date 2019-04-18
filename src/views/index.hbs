@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{{> head}}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>David Vicent auth</title>
-</head>
+<div class="jumbotron">
+    {{#if user}}
+    <h1>
+        bienvenido, {{user.username}} espero que permanezcas en la web.
+    </h1>
+    {{else}}
+    <h1>BIENVENIDO, home de prueba</h1>
 
-<body>
-    <h1>Hola</h1>
-</body>
-
-</html>
+    {{/if}}
+</div>
+{{> footer}}

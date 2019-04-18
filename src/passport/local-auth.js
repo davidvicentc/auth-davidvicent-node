@@ -12,17 +12,17 @@ passport.deserializeUser(async (id, done) => {
 })
 
 passport.use('local-signup', new localStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
-}, async (req, email, password, done) => {
+}, async (req, username, password, done) => {
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
     if (user) {
-        return done(null, false, req.flash('signupMessage', 'El email ya existe en la base de datos'))
+        return done(null, false, req.flash('signupMessage', 'El username ya existe en la base de datos'))
     } else {
         const newUser = new User();
-        newUser.email = email;
+        newUser.username = username;
         newUser.password = newUser.encryptPassword(password);
 
         await newUser.save();
@@ -31,11 +31,11 @@ passport.use('local-signup', new localStrategy({
 }))
 
 passport.use('local-signin', new localStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
-}, async (req, email, password, done) => {
-    const user = await User.findOne({ email });
+}, async (req, username, password, done) => {
+    const user = await User.findOne({ username });
 
     if (!user) {
         done(null, false, req.flash('signinMessage', 'El usuario no existe'))
