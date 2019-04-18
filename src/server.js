@@ -5,7 +5,7 @@ const morgan = require('morgan')
 const passport = require('passport')
 const session = require('express-session')
 const flash = require('connect-flash');
-
+const port = process.env.PORT || 3000;
 //initializations
 const app = express();
 require('./database.js')
@@ -46,6 +46,6 @@ app.use((req, res, next) => {
 app.use(require('./routes/index'));
 
 //listen server
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log(`server on port ${app.get('port')}`)
 })
